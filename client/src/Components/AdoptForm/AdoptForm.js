@@ -85,23 +85,20 @@ function AdoptForm(props) {
         <div className="pet-details">
           <div className="pet-pic">
             <img
-              src={`http://localhost:4000/iamges/${props.pet.image}`}
+              src={`http://localhost:4000/images/${props.pet.filename}`}
               alt={props.pet.name}
             />
           </div>
           <div className="pet-info">
             <h2>{props.pet.name}</h2>
             <p>
-              <b>Type:</b>
-              {props.pet.type}
+              <b>Type:</b> {props.pet.type}
             </p>
             <p>
-              <b>Age:</b>
-              {props.pet.age}
+              <b>Age:</b> {props.pet.age}
             </p>
             <p>
-              <b>Location:</b>
-              {props.pet.location}
+              <b>Location:</b> {props.pet.location}
             </p>
           </div>
         </div>
@@ -110,7 +107,7 @@ function AdoptForm(props) {
             <div className="custom-input-box">
               <div className="email-not-valid">
                 <label className="custom-label">Email:</label>
-                {emailError && <p>Please provide valid Email</p>}
+                {emailError && <p>Please provide valid email address.</p>}
               </div>
               <input
                 type="text"
@@ -155,10 +152,18 @@ function AdoptForm(props) {
                 className="custom-input"
               />
             </div>
-            {formError && (
+            {formError && <p className="error-message">Please fill out all fields.</p>}
+            <button
+              disabled={isSubmitting}
+              type="submit"
+              className="custom-cta-button custom-m-b"
+            >
+              {isSubmitting ? 'Submitting' : 'Submit'}
+            </button>
+            {ErrPopup && (
               <div className="popup">
                 <div className="popup-content">
-                  <h4>oops!... Connection Error</h4>
+                  <h4>Oops!... Connection Error.</h4>
                 </div>
                 <button onClick={(e) => setErrPopup(!ErrPopup)} className="close-btn">
                   Close <i className="fa fa-times"></i>
@@ -169,8 +174,8 @@ function AdoptForm(props) {
               <div className="popup">
                 <div className="popup-content">
                   <h4>
-                    Adoption Form of {props.pet.name} is Submitted; we will get in touch
-                    with you soon for further process
+                    Adoption Form of {props.pet.name} is Submitted; we'll get in touch
+                    with you soon for further process.
                   </h4>
                 </div>
                 <button
@@ -190,3 +195,5 @@ function AdoptForm(props) {
     </div>
   );
 }
+
+export default AdoptForm;
