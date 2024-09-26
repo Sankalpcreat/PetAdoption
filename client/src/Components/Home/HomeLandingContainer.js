@@ -1,43 +1,26 @@
 import React from 'react';
-import girlHoldingADog from './images/girlHoldingADog.png';
-import homepageDog from './images/homepageDog.png';
-import footPrint from './images/footPrint.png';
-import { Link } from 'react-router-dom';
+import Card from './Card';
 
-const HomeLandingContainer = (props) => {
-  const scrollToTop = () => {
-    window.scrollTo(0, 0);
-  };
-
+const PlanningToAdoptAPet = () => {
   return (
-    <div className="home-container">
-      <div className="homeContainer-left">
-        <div>
-          <p className="home-title">
-            <div className="home-titlePlusPng">
-              <p>Your Pets </p>
-              <img src={homepageDog} alt="Dog sitting" />
-            </div>
-            Are Our
-            <br />
-            Priority
-          </p>
-          <p className="home-second-para">{props.description}</p>
-        </div>
-        <div className="adopt-btn">
-          <Link to="./pets">
-            <button className="Home-button" onClick={scrollToTop}>
-              <p>Adopt a Pet</p>
-              <img src={footPrint} alt="footprint" />
-            </button>
-          </Link>
-        </div>
-      </div>
-      <div className="homeContainer-right">
-        <img src={girlHoldingADog} alt="Girl holding a Dog" />
+    <div className="planning-container">
+      <h1>Planning to Adopt a Pet?</h1>
+      <div className="boxes-container">
+        <Card
+          title="The Joy of Pet Adoption"
+          description="Bringing a pet into your life can be an incredibly rewarding experience, not just for you but for the furry friend you welcome into your home. There's a special kind of magic that comes with adopting any companion animal."
+        />
+        <Card
+          title="A Guide to Pet Adoption"
+          description="Are you considering adding a new pet to your family? Pet adoption is a wonderful option to consider. The journey of finding the ideal companion involves careful thought, research, and planning, but the rewards are immeasurable. "
+        />
+        <Card
+          title="Healing Power of Animal"
+          description="Animals have an extraordinary ability to touch our lives in profound ways, offering not only companionship but also a therapeutic bond that can positively impact our physical, mental, and emotional well-being"
+        />
       </div>
     </div>
   );
 };
 
-export default HomeLandingContainer;
+export default PlanningToAdoptAPet;

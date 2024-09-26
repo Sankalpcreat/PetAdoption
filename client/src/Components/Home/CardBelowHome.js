@@ -1,6 +1,7 @@
 import React from 'react';
 import HomeDarkCardLeftPic from './images/HomeDarkCardLeftPic.png';
 import HomeDarkCardRightPic from './images/HomeDarkCardRightPic.png';
+
 const formatNumber = (number) => {
   const suffixes = ['', 'k', 'M', 'B', 'T'];
   const suffixNum = Math.floor(('' + number).length / 3);
@@ -9,6 +10,7 @@ const formatNumber = (number) => {
     ? `${shortNumber}${suffixes[suffixNum]}${'+'}`
     : number.toString();
 };
+
 const CardBelowHome = () => {
   const adoptedPets = formatNumber(1212);
   return (
@@ -33,4 +35,5 @@ const CardBelowHome = () => {
     </div>
   );
 };
+
 export default CardBelowHome;

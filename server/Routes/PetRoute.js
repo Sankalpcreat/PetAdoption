@@ -11,13 +11,16 @@ const {
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, '../images')); // Ensure __dirname is correct
+    cb(null, path.join(__dirname, '../images'));
   },
   filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-    cb(null, uniqueSuffix + path.extname(file.originalname)); // Use 'file' instead of 'res'
+    cb(
+      null,
+      Date.now() + '-' + Math.round(Math.random() * 1e9) + path.extname(file.originalname)
+    );
   },
 });
+
 const upload = multer({ storage: storage });
 
 router.get('/requests', (req, res) => allPets('Pending', req, res));

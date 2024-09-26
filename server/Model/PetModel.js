@@ -1,15 +1,14 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const schema = mongoose.Schema;
 
-// Define the Pet schema
-const PetSchema = new Schema(
+const PetSchema = new schema(
   {
     name: {
       type: String,
       required: true,
     },
     age: {
-      type: Number,
+      type: String,
       required: true,
     },
     area: {
@@ -42,7 +41,6 @@ const PetSchema = new Schema(
     },
   },
   { timestamps: true }
-); // Use timestamps (with 's') to automatically add `createdAt` and `updatedAt`
+);
 
-// Export the model
 module.exports = mongoose.model('Pet', PetSchema);

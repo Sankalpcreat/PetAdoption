@@ -35,13 +35,13 @@ const Pets = () => {
   return (
     <>
       <div className="filter-selection">
-        <select value={filter} onChange={(e) => setFilter(e.target.value)}>
+        <select value={filter} onChange={(event) => setFilter(event.target.value)}>
           <option value="all">All Pets</option>
           <option value="Dog">Dogs</option>
           <option value="Cat">Cats</option>
           <option value="Rabbit">Rabbits</option>
           <option value="Bird">Birds</option>
-          <option value="Fish">Fish</option>
+          <option value="Fish">Fishs</option>
           <option value="Other">Other</option>
         </select>
       </div>

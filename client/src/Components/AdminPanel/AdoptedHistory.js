@@ -7,18 +7,19 @@ const AdoptedHistory = () => {
 
   const fetchAdoptedPets = async () => {
     try {
-      const response = await fetch('http://localhost:4000/approvedPets');
+      const response = await fetch('http://localhost:4000/adoptedPets');
       if (!response.ok) {
         throw new Error('An error occurred while fetching adopted pets');
       }
       const data = await response.json();
       setRequests(data);
     } catch (error) {
-      console.log('Error un fetching adopted pets', error);
+      console.error('Error fetching adopted pets:', error);
     } finally {
       setLoading(false);
     }
   };
+
   useEffect(() => {
     fetchAdoptedPets();
   }, []);

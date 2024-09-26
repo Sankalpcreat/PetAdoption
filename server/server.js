@@ -14,19 +14,22 @@ app.use(cors());
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(petRouter);
-app.use('/api/form', AdoptFormRoute);
-app.use('/api/admin', AdminRoute);
 
-mongoose.connect(process.env.MONGO_URL).then(() => {
-  try {
-    console.log('Connected to MongoDB');
-    const PORT = 4349;
+app.use(express.urlencoded({ extended: true }));
+
+app.use(petRouter);
+app.use('/form', AdoptFormRoute);
+app.use('/admin', AdminRoute);
+
+mongoose
+  .connect(process.env.mongooseURL)
+  .then(() => {
+    console.log('Connected to DB');
+    const PORT = 4000;
     app.listen(PORT, () => {
-      console.log(`Server is running on port ${PORT}`);
+      console.log(`Listening on port ${PORT}`);
     });
-  } catch (error) {
-    console.log(error);
-  }
-});
+  })
+  .catch((err) => {
+    console.error(err);
+  });

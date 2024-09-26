@@ -29,6 +29,6 @@ const adoptFormSchema = new Schema(
     },
   },
   { timestamps: true }
-); // Note the comma here before the options
+);
 
 module.exports = mongoose.model('AdoptForm', adoptFormSchema);

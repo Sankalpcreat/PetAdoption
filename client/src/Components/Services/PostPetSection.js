@@ -43,7 +43,7 @@ const PostPetSection = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.prevent.Default();
+    e.preventDefault();
 
     if (
       !name ||
@@ -59,11 +59,14 @@ const PostPetSection = () => {
       setFormError(true);
       return;
     }
+
     if (!isEmailValid(email)) {
       setEmailError(true);
       return;
     }
+
     setIsSubmitting(true);
+
     const formData = new FormData();
     formData.append('name', name);
     formData.append('age', age);
@@ -74,8 +77,9 @@ const PostPetSection = () => {
     formData.append('type', type);
 
     if (picture) {
-      formData.apppend('picture', picture);
+      formData.append('picture', picture);
     }
+
     try {
       const response = await fetch('http://localhost:4000/services', {
         method: 'POST',
@@ -99,8 +103,8 @@ const PostPetSection = () => {
       setPicture(null);
       setFileName('');
       togglePopup();
-    } catch (err) {
-      console.log('Error in submitting form:', err);
+    } catch (error) {
+      console.error('Error submitting form:', error);
     } finally {
       setIsSubmitting(false);
     }
@@ -108,8 +112,9 @@ const PostPetSection = () => {
 
   return (
     <section className="post-pet-section">
-      <h2>Post a pet for Adoption</h2>
-      <img src={postPet} alt="Pet looking for Home" />
+      <h2>Post a Pet for Adoption</h2>
+      <img src={postPet} alt="Pet Looking for a Home" />
+
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="input-box">
           <label>Name:</label>
@@ -168,6 +173,7 @@ const PostPetSection = () => {
         </div>
 
         <h3>Contact Information</h3>
+
         <div className="input-box">
           <label>Email:</label>
           <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
@@ -177,19 +183,22 @@ const PostPetSection = () => {
           <label>Ph.No:</label>
           <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} />
         </div>
+
         {emailError && (
-          <p className="error-message">Please provide a valid email address</p>
+          <p className="error-message">Please provide a valid email address.</p>
         )}
         {formError && (
-          <p className="error-message">Please fill all the required fields</p>
+          <p className="error-message">Please fill out all fields correctly.</p>
         )}
+
         <button type="submit" className="cta-button" disabled={isSubmitting}>
-          {isSubmitting ? 'Submitting...' : 'Submit'}
+          {isSubmitting ? 'Submitting...' : 'Submit Your Pet'}
         </button>
+
         {showPopup && (
           <div className="popup">
             <div className="popup-content">
-              <h4>Application Submitted;we will get in touch with you</h4>
+              <h4>Application Submitted; we'll get in touch with you soon.</h4>
             </div>
             <button onClick={togglePopup} className="close-btn">
               Close <i className="fa fa-times"></i>
@@ -200,4 +209,5 @@ const PostPetSection = () => {
     </section>
   );
 };
+
 export default PostPetSection;

@@ -4,12 +4,12 @@ const {
   saveForm,
   getAdoptForms,
   deleteForm,
-  deleteAllRequest,
-} = require('../controller/AdoptFormController');
+  deleteAllRequests,
+} = require('../Controller/AdoptFormController');
 
 router.post('/save', saveForm);
 router.get('/getForms', getAdoptForms);
 router.delete('/reject/:id', deleteForm);
-router.delete('/delete/many/:id', deleteAllRequest);
+router.delete('/delete/many/:id', deleteAllRequests);
 
 module.exports = router;

@@ -1,4 +1,4 @@
-const AdoptForm = require('../Model/AdoptFormModel.js');
+const AdoptForm = require('../Model/AdoptFormModel');
 const express = require('express');
 
 const saveForm = async (req, res) => {
@@ -11,13 +11,6 @@ const saveForm = async (req, res) => {
       familyComposition,
       petId,
     } = req.body;
-
-    // Ensure required fields are present
-    if (!email || !phoneNo || !petId) {
-      return res.status(400).json({ message: 'All fields are required' });
-    }
-
-    // Create and save the form
     const form = await AdoptForm.create({
       email,
       livingSituation,
@@ -27,17 +20,16 @@ const saveForm = async (req, res) => {
       petId,
     });
 
-    // Return success response
-    res.status(201).json({ message: 'Form created successfully', form });
+    res.status(200).json(form);
   } catch (err) {
-    res.status(400).json({ message: err.message }); // Correct error response
+    res.status(400).json({ message: err.message });
   }
 };
 
 const getAdoptForms = async (req, res) => {
   try {
-    const adoptForms = await AdoptForm.find().sort({ createdAt: -1 });
-    res.status(200).json(adoptForms);
+    const forms = await AdoptForm.find().sort({ createdAt: -1 });
+    res.status(200).json(forms);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
@@ -46,9 +38,6 @@ const getAdoptForms = async (req, res) => {
 const deleteForm = async (req, res) => {
   try {
     const { id } = req.params;
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(400).json({ message: 'Invalid form id' });
-    }
     const form = await AdoptForm.findByIdAndDelete(id);
     if (!form) {
       return res.status(404).json({ message: 'Form not found' });
@@ -59,22 +48,17 @@ const deleteForm = async (req, res) => {
   }
 };
 
-const deleteAllRequest = async (req, res) => {
+const deleteAllRequests = async (req, res) => {
   try {
     const { id } = req.params;
-
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(400).json({ message: 'Invalid form id' });
-    }
-
     const result = await AdoptForm.deleteMany({ petId: id });
-
     if (result.deletedCount === 0) {
-      return res.status(404).json({ message: 'No form found' });
+      console.log('Forms not found');
+      return res.status(404).json({ error: 'Forms not found' });
     }
     res.status(200).json({ message: 'Forms deleted successfully' });
-  } catch (err) {
-    res.status(400).json({ message: err.message });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
   }
 };
 
@@ -82,5 +66,5 @@ module.exports = {
   saveForm,
   getAdoptForms,
   deleteForm,
-  deleteAllRequest,
+  deleteAllRequests,
 };

@@ -51,15 +51,15 @@ const AdminLogin = () => {
               onChange={(e) => setUsername(e.target.value)}
             />
             <input
-              type="text"
-              placeholder="password"
+              type="password"
+              placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
             {showErrorMessage && (
               <p className="error-message">Incorrect username or password</p>
             )}
-            <button className="flat-right" onClick={handleLogin}>
+            <button className="float-right" onClick={handleLogin}>
               Login
             </button>
           </div>
