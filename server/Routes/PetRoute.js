@@ -7,7 +7,7 @@ const {
   approveRequest,
   deletePost,
   allPets,
-} = require('../Controller/PetController');
+} = require('../controller/PetController');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
