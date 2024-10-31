@@ -13,7 +13,7 @@ const Contact = () => {
 
         <i class="fa fa-linkedin"></i>
         <a class="mail-links" href="https://www.linkedin.com/in/sankalpsingh03/">
-          User Name:sankalpsingh03
+          sankalpsingh03
         </a>
 
         <i class="fa fa-github"></i>

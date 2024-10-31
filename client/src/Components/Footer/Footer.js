@@ -36,7 +36,7 @@ const Footer = (props) => {
           >
             <i className="fa fa-github"></i> GitHub
           </a>
-          &nbsp;&nbsp;|&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;
         </p>
         <p>&copy; 2024 Sankalp Singh</p>
       </div>
