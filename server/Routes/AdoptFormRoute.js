@@ -5,7 +5,7 @@ const {
   getAdoptForms,
   deleteForm,
   deleteAllRequests,
-} = require('../Controller/AdoptFormController');
+} = require('../controller/AdoptFormController');
 
 router.post('/save', saveForm);
 router.get('/getForms', getAdoptForms);
